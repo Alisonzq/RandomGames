@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>cryptographie</StartupObject>
+    <StartupObject>Cryptographie</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -42,7 +42,6 @@
     <Compile Include="CaeserCipher.cs" />
     <Compile Include="fractions.cs" />
     <Compile Include="games.cs" />
-    <Compile Include="geometry.cs" />
     <Compile Include="InputNumber.cs" />
     <Compile Include="Matrice.cs" />
     <Compile Include="NumToLetterConverter.cs" />

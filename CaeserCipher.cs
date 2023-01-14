@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 
-class cryptographie
+class Cryptographie
 {
     static void Main()
     {
@@ -14,36 +13,63 @@ class cryptographie
 
             foreach (char letter in encryptText)
             {
-                if (Char.IsLower(letter))
+                if (Char.IsLetter(letter))
                 {
-                    int letterIndex = alphabet.IndexOf(letter);
-                    newText += newAlphabet[letterIndex];
+                    if (Char.IsUpper(letter))
+                    {
+                        char lowerLett = Char.ToLower(letter);
+                        int letterIndex = alphabet.IndexOf(lowerLett);
+                        newText += Char.ToUpper(newAlphabet[letterIndex]);
+                    }
+                    else
+                    {
+                        int letterIndex = alphabet.IndexOf(letter);
+                        newText += newAlphabet[letterIndex];
+                    }
                 }
                 else
+                {
                     newText += letter;
+                }
+
             }
             return newText;
         }
 
         void decrypt(string decryptText)
         {
-            foreach (int keyD in Enumerable.Range(1, 26))
+            string[] cipherWords = new string[26];
+            bool found = false;
+            for (int keyD = 0; keyD < 26; keyD++)
             {
-                //random 1 to 3
                 string cipher = encrypt(decryptText, keyD);
-                bool found = false;
-                foreach (string line in File.ReadLines(@"words.txt"))
+                cipherWords[keyD] = cipher;
+            }
+
+            foreach (string line in File.ReadLines(@"words.txt"))
+            {
+                foreach (string word in cipherWords)
                 {
-                    if (cipher == line)
+                    string lower = word.ToLower();
+                    if (word == line)
                     {
                         found = true;
-                        Console.WriteLine(cipher);
+                        Console.WriteLine(word);
+                        break;
+                    } else if (lower == line)
+                    {
+                        found = true;
+                        Console.WriteLine(word);
                         break;
                     }
-
                 }
-                if (found)
-                    Console.WriteLine(cipher);
+            }
+            if (found == false)
+            {
+                foreach (var word in cipherWords)
+                {
+                    Console.WriteLine(word);
+                }
             }
         }
 

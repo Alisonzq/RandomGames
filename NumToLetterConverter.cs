@@ -143,5 +143,6 @@ class Converter
         int nombreAConvertir = InputNumber.InputNumBetween(1, 1000000);
         Console.WriteLine(ConvertirEntierSousUnMillion(nombreAConvertir));
         Console.WriteLine();
+        Console.ReadKey();
     }
 }

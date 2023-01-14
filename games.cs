@@ -13,7 +13,7 @@ class Jeu
         if (leMot.Length != 0) Console.WriteLine(leMot);
     }
 
-    static void SautDeLigne_s(int nombreDeLignesQuIlFautSauter)
+    static void SautDeLigne(int nombreDeLignesQuIlFautSauter)
     {
         Console.ResetColor();
         for (int i = 0; i < nombreDeLignesQuIlFautSauter; i++)
@@ -24,7 +24,6 @@ class Jeu
 
     static void JeuDuChangeRendu()
     {
-        //À COMPLÉTER
         Console.WriteLine("Quel est le nombre de 'cents' de l'item acheté?");
         int nombreDeCentsDuProduit = InputNumber.InputNumBetween(1, 99);
 
@@ -81,26 +80,15 @@ class Jeu
 
     static void JeuDeLHypotenuse()
     {
-        //COMPLÈTEMENT CODÉ POUR VOUS!
         int premiereDonnee = DemandeLongueurCoteTriangleRect("première");
         int deuxiemeDonnee = DemandeLongueurCoteTriangleRect("deuxième");
-        bool unCôtéHypo = false; //Initialisation par défaut
+        bool unCôtéHypo = false; 
         int hypotenuse, cote;
-        hypotenuse = cote = 0; //Initialisation par défaut
+        hypotenuse = cote = 0; 
 
         if (premiereDonnee != deuxiemeDonnee)
         {
-            Console.WriteLine("côtés de longueurs différents, côté plus long est l'hypothénuse? o/n");
-            string input = Console.ReadLine();
-            switch(input)
-            {
-                case "o":
-                    unCôtéHypo = true;
-                    break;
-                case "n":
-                    unCôtéHypo = false;
-                    break;
-            }
+            unCôtéHypo = InputNumber.InputOuiouNon("côtés de longueurs différents, côté plus long est l'hypothénuse?");
             if (unCôtéHypo)
             {
                 if (premiereDonnee > deuxiemeDonnee)
@@ -122,7 +110,6 @@ class Jeu
             Console.WriteLine("L'hypoténuse de ce triangle rectangle est {0}", Math.Sqrt(Math.Pow(premiereDonnee, 2) + Math.Pow(deuxiemeDonnee, 2)));
     }
 
-    //===***   SECTION #4 POUR LE JEU #3   ***===
 
     static void JeuDeLEquationLin()
     {
@@ -132,7 +119,6 @@ class Jeu
         Console.WriteLine("Il faut maintenant inscrire une valeur ENTIÈRE pour B:");
         int entierPourB = Int32.Parse(Console.ReadLine());
 
-        //CE QUI EST CI-BAS DOIT ÊTRE COMPLÉTÉ
         if (entierPourA != 0 && entierPourB != 0)
             Console.WriteLine("L'équation {0}X + {1} = 0 a une solution en X = {2}.", entierPourA, entierPourB, (double)-entierPourB / entierPourA);
         else
@@ -155,8 +141,8 @@ class Jeu
         int entierPourB = Int32.Parse(Console.ReadLine()); 
         Console.WriteLine("Il faut finalement inscrire une valeur ENTIÈRE pour C:");
         int entierPourC = Int32.Parse(Console.ReadLine()); ; 
-        SautDeLigne_s(1);
-        double radicandePotentiel = Math.Pow(entierPourB, 2) - 4 * entierPourA * entierPourC; //REMPLACEZ CE 0.0. PAR LA BONNE FORMULE POUR LE RADICANDE
+        SautDeLigne(1);
+        double radicandePotentiel = Math.Pow(entierPourB, 2) - 4 * entierPourA * entierPourC; 
         double quad = (-entierPourB + Math.Sqrt(radicandePotentiel)) / (2 * entierPourA);
         double quad2 = (-entierPourB - Math.Sqrt(radicandePotentiel)) / (2 * entierPourA);
         double reponse(double wakandaquad) { return (entierPourA * Math.Pow(wakandaquad, 2)) + (entierPourB * wakandaquad) + entierPourC; }
@@ -175,9 +161,6 @@ class Jeu
         }
     }
 
-    //===***---&&&   LES JEUX DE CHAÎNES DE CARACTÈRES   &&&---***===
-
-    //===***   SECTION #6 POUR LE JEU #5   ***===
 
     static void JeuDeLEliminationDEspaces()
     {
@@ -193,7 +176,6 @@ class Jeu
         Console.WriteLine(chaineEpuree);
     }
 
-    //===***   SECTION #7 POUR LE JEU #6   ***===
 
     static void JeuDuMotParLigne()
     {
@@ -213,7 +195,6 @@ class Jeu
         AfficheMotSiNonVide(mot);
     }
 
-    //===***   SECTION #8 POUR LE JEU #7   ***===    
 
     static void JeuDesOccurrencesDUnCaractere()
     {
@@ -243,7 +224,6 @@ class Jeu
 
 
 
-    //===***   SECTION #9: LE "MAIN"   ***===    
     static void Main()
     {
         string chaineCapteeALaConsole;
@@ -251,33 +231,22 @@ class Jeu
         bool continueGame = true;
         do
         {
-            SautDeLigne_s(3);
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("LE BUFFET!");
-            SautDeLigne_s(3);
-            Console.BackgroundColor = ConsoleColor.DarkRed;
+            SautDeLigne(3);
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.Write("Choisissez parmi les 7 options suivantes:");
-            SautDeLigne_s(2);
-            Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.Write("(options numériques et mathématiques):");
-            SautDeLigne_s(2);
+            SautDeLigne(2);
             Console.WriteLine("Touche 1 ==> Veuillez passer à la caisse...");
             Console.WriteLine("Touche 2 ==> Pythagore!");
             Console.WriteLine("Touche 3 ==> L'équation linéaire");
             Console.WriteLine("Touche 4 ==> L'équation quadratique");
-            SautDeLigne_s(1);
-            Console.BackgroundColor = ConsoleColor.DarkCyan;
-            Console.Write("(options de chaînes de caractères):");
-            SautDeLigne_s(2);
             Console.WriteLine("Touche 5 ==> Les espaces... pouf!");
             Console.WriteLine("Touche 6 ==> La phrase qui prend de la place...");
             Console.WriteLine("Touche 7 ==> Combien de fois apparaît-il, lui?");
             Console.WriteLine("N'importe quelle(s) autre(s) touche(s) ==> Fin du programme");
-            SautDeLigne_s(1);
+            SautDeLigne(1);
             Console.Write("Votre choix, svp:");
             chaineCapteeALaConsole = Console.ReadLine();
-            SautDeLigne_s(2);
+            SautDeLigne(2);
             do
             {
                 switch (chaineCapteeALaConsole)
@@ -306,23 +275,13 @@ class Jeu
                     default:
                         onArreteTout = true;
                         break;
-                }//FIN DU SWITCH
+                }
                 if (!onArreteTout)
                 {
-                    SautDeLigne_s(1);
-                    Console.WriteLine("Voulez-vous reprendre le même jeu? o/n");
-                    string input = Console.ReadLine();
-                    switch (input)
-                    {
-                        case "o":
-                            continueGame = true;
-                            break;
-                        case "n":
-                            continueGame = false;
-                            break;
-                    }
+                    SautDeLigne(1);
+                    continueGame = InputNumber.InputOuiouNon("Voulez-vous reprendre le même jeu?: ");
                 }
             } while (!onArreteTout && continueGame);
         } while (!onArreteTout);
-    }//FIN DU MAIN
-}//FIN DE LA CLASSE
+    }
+}

@@ -3,7 +3,6 @@ using System.Linq;
 
 class Matrice
 {
-
     static char SaisitCharValideALaConsole(char[] possibilitésDeCaractère)
     {
         char caractèreCaptéALaConsole;
@@ -186,32 +185,10 @@ class Matrice
                         AfficherMatrice(matriceRésultante);
                     }
 
-                    Console.WriteLine("Voulez - vous faire une autre opération avec les deux mêmes matrices ?: o/n");
-                    usagerVeutUtiliserLes2MêmesMatrices = true;
-                    string inputMêmeMatrice = Console.ReadLine();
-                    switch (inputMêmeMatrice)
-                    {
-                        case "o":
-                            usagerVeutUtiliserLes2MêmesMatrices = true;
-                            break;
-                        case "n":
-                            usagerVeutUtiliserLes2MêmesMatrices = false;
-                            break;
-                    }
+                    usagerVeutUtiliserLes2MêmesMatrices = InputNumber.InputOuiouNon("Voulez-vous faire une autre opération avec les deux mêmes matrices?:");
                 } while (usagerVeutUtiliserLes2MêmesMatrices);
             }
-            Console.WriteLine("Voulez-vous inscrire deux nouvelles matrices pour faire d'autres opérations?: o/n");
-            usagerVeutPoursuivreLeJeu = true;
-            string input = Console.ReadLine();
-            switch (input)
-            {
-                case "o":
-                    usagerVeutPoursuivreLeJeu = true;
-                    break;
-                case "n":
-                    usagerVeutPoursuivreLeJeu = false;
-                    break;
-            }
+            usagerVeutPoursuivreLeJeu = InputNumber.InputOuiouNon("Voulez-vous inscrire deux nouvelles matrices pour faire d'autres opérations? "); 
         } while (usagerVeutPoursuivreLeJeu);
     }
 }
